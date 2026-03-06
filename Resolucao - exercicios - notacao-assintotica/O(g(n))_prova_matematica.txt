@@ -1,0 +1,50 @@
+O(g(n)) - Limite Assintótico Superior
+
+f(n) pertence a O(g(n)) se existem constantes c e n0 tais que:
+
+f(n) >= 0, c > 0, n >= 0
+f(n) <= c * g(n)
+
+Para Omega(g(n)), recomenda-se escolher sempre n0 = 1. Essa técnica é chamada de "Lógica de Superestimação".
+
+
+==== Exercício 1 ====
+f(n) = 5n + 10
+g(n) = n^2
+
+Substituindo f(n) e g(n) na inequação f(n) <= c * g(n), tem-se:
+5n + 10 <= c * n^2
+
+Escolhendo n0 = 1, tem-se: 
+15 <= c
+
+A partir de qual valor de c a inequação passa a ser verdadeira? Resposta: c = 15.
+Tem-se então: c = 15 e n0 = 1.
+
+
+==== Exercício 2 ====
+f(n) = n^2 + 4n
+g(n) = n^2
+
+Substituindo f(n) e g(n) na inequação f(n) <= c * g(n), tem-se:
+n^2 + 4n <= c * n^2
+
+Escolhendo n0 = 1, tem-se: 
+5 <= c
+
+A partir de qual valor de c a inequação passa a ser verdadeira? Resposta: c = 5.
+Tem-se então: c = 5 e n0 = 1.
+
+
+==== Exercício 4 ====
+f(n) = 100
+g(n) = 1
+
+Substituindo f(n) e g(n) na inequação f(n) <= c * g(n), tem-se:
+100 <= c * 1
+
+A partir de qual valor de c a inequação passa a ser verdadeira? Resposta: c = 100.
+
+Neste caso, como não temos o valor n na inequação (f(n) e g(n) são constantes), tem-se que n0 = 0.
+
+Tem-se então: c = 100 e n0 = 0.
