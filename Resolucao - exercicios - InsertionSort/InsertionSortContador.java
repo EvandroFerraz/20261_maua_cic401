@@ -45,8 +45,8 @@ public class InsertionSortContador {
         // }
 
         //int[] A = {2, 6, 5, 10, 7, 4};
-        //int[] A = {100, 90, 80, 70, 60, 50, 40, 30, 20, 10}; // total de 90 operacoes = Theta(n^2), sendo n = 10
-        int[] A = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100}; // total de 9 operacoes, (n-1) = Theta(n), sendo n = 10
+        //int[] A = {100, 90, 80, 70, 60, 50, 40, 30, 20, 10}; // pior caso possível - vetor decrescente - total de 90 operacoes, n*(n-1) = Theta(n^2), sendo n = 10
+        int[] A = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100}; // melhor caso possível - vetor crescente - total de 9 operacoes, (n-1) = Theta(n), sendo n = 10
         
         System.out.println("Antes: " + Arrays.toString(A));
         insertionSort(A);
