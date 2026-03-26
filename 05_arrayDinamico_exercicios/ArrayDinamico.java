@@ -55,4 +55,25 @@ public class ArrayDinamico {
         }
         return -1;
     }
+
+    // Sobrescrita da representação textual do objeto
+    // O(n)
+    public String toString() {
+        if (quantidade == 0) {
+            return "[]";
+        }
+
+        String s = "[";
+        for (int i = 0; i < quantidade; i++) {
+            s += dados[i];
+            
+            // Adiciona a vírgula e o espaço, exceto para o último elemento
+            if (i < quantidade - 1) {
+                s += ", ";
+            }
+        }
+        s += "]"; // Fecha os colchetes pra ficar bonito
+        
+        return s;
+    }
 }
