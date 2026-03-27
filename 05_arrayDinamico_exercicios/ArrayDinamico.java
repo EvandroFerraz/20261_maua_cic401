@@ -29,7 +29,7 @@ public class ArrayDinamico {
         return quantidade;
     }
 
-    // O(1) se possui espaço disponível
+    // Omega(1) se possui espaço disponível
     // O(n) se precisar redimensionar
     public void inserirNoFinal(int valor){
         if(quantidade == dados.length) redimensionar(2 * dados.length);
@@ -37,8 +37,8 @@ public class ArrayDinamico {
         quantidade++;
     }
 
-    // O(n)
-    // Se redimensionar = 2 * n, ainda Theta(n)
+    // Omega(n)
+    // Se redimensionar = 2 * n, ainda O(n)
     public void inserirNoInicio(int valor){
         if(quantidade == dados.length) redimensionar(2 * dados.length);
         for(int i = quantidade; i > 0; i--){
@@ -75,5 +75,42 @@ public class ArrayDinamico {
         s += "]"; // Fecha os colchetes pra ficar bonito
         
         return s;
+    }
+
+    public void removerNaPosicao(int i){
+        // Verifica se o índice é válido
+        if(i < 0 || i >= quantidade) throw new IndexOutOfBoundsException("Indice fora dos limites.");
+
+        // Deslocar os elementos para a esquerda a partir do índice removido
+        // [3,6,7,_]
+        for(int j = i; j < quantidade - 1; j++){
+            dados[j] = dados[j+1];
+        }
+        // Decrementa a quantidade de elementos
+        quantidade--;
+    }
+    // n = quantidade
+    // Theta(n)
+    public void removerTodos(int v){
+        for(int i = 0; i < quantidade; i++){
+            if(dados[i] == v){
+                removerNaPosicao(i);
+                i--;
+            }
+        }
+    }
+
+    public static void main(String[] args){
+        // cria o objeto do array dinamico
+        ArrayDinamico arr = new ArrayDinamico(10);
+
+        // preenche o array
+        for(int v : new int[] {3, 7, 3, 3, 5, 3, 8})
+            arr.inserirNoFinal(v);
+
+        // testa o método removerTodos()
+        System.out.println("Antes: " + arr);
+        arr.removerTodos(3);
+        System.out.println("Depois: " + arr); // Depois: [7, 5, 8]
     }
 }
