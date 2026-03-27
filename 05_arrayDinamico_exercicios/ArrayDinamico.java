@@ -2,19 +2,19 @@ public class ArrayDinamico {
     private int[] dados;
     private int quantidade; // numero de posições ocupadas
 
-    // O(1)
+    // Theta(1)
     public ArrayDinamico(int capacidade){
         dados = new int[capacidade];
         quantidade = 0;
     }
 
-    // O(1)
+    // Theta(1)
     public int acessar(int i){
         if(i < 0 || i >= quantidade) throw new IndexOutOfBoundsException();
         return dados[i];
     }
 
-    // O(n)
+    // Theta(n)
     // n = quantidade
     private void redimensionar(int novaCapacidade){
         int[] novo = new int[novaCapacidade];
@@ -24,21 +24,21 @@ public class ArrayDinamico {
         dados = novo;
     }
 
-    // O(1)
+    // Theta(1)
     public int getQuantidade(){
         return quantidade;
     }
 
-    // Omega(1) se possui espaço disponível
-    // O(n) se precisar redimensionar
+    // Omega(1) se possui espaço disponível, Omega = caso de menor complexidade
+    // O(n) se precisar redimensionar, O = caso de maior complexidade
     public void inserirNoFinal(int valor){
         if(quantidade == dados.length) redimensionar(2 * dados.length);
         dados[quantidade] = valor;
         quantidade++;
     }
 
-    // Omega(n)
-    // Se redimensionar = 2 * n, ainda O(n)
+    // Omega(n) se não redimensionar (apenas deslocar), Omega = caso de menor complexidade
+    // O(2 * n) = O(n) se redimensionar e deslocar, O = caso de maior complexidade
     public void inserirNoInicio(int valor){
         if(quantidade == dados.length) redimensionar(2 * dados.length);
         for(int i = quantidade; i > 0; i--){
@@ -48,7 +48,8 @@ public class ArrayDinamico {
         quantidade++;
     }
 
-    // O(n)
+    // Omega(1) = caso de menor complexidade (o valor buscado está na primeira posição)
+    // O(n) = caso de maior complexidade (o valor buscado não está no vetor)
     public int buscar(int valor){
         for(int i = 0; i < quantidade; i++){
             if(dados[i] == valor) return i;
@@ -57,7 +58,7 @@ public class ArrayDinamico {
     }
 
     // Sobrescrita da representação textual do objeto
-    // O(n)
+    // Theta(n)
     public String toString() {
         if (quantidade == 0) {
             return "[]";
@@ -89,8 +90,10 @@ public class ArrayDinamico {
         // Decrementa a quantidade de elementos
         quantidade--;
     }
+    
     // n = quantidade
-    // Theta(n)
+    // Omega(n) = caso de menor complexidade, percorre todo o vetor sem remover nenhuma vez
+    // O(n^2) = caso de maior complexidade, chama removerNaPosicao(i), que tem complexidade O(n), para todas as n posições.
     public void removerTodos(int v){
         for(int i = 0; i < quantidade; i++){
             if(dados[i] == v){
