@@ -78,6 +78,7 @@ public class ArrayDinamico {
         return s;
     }
 
+    // Exercício 6
     public void removerNaPosicao(int i){
         // Verifica se o índice é válido
         if(i < 0 || i >= quantidade) throw new IndexOutOfBoundsException("Indice fora dos limites.");
@@ -91,6 +92,7 @@ public class ArrayDinamico {
         quantidade--;
     }
     
+    // Exercício 6
     // n = quantidade
     // Omega(n) = caso de menor complexidade, percorre todo o vetor sem remover nenhuma vez
     // O(n^2) = caso de maior complexidade, chama removerNaPosicao(i), que tem complexidade O(n), para todas as n posições.
