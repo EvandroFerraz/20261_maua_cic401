@@ -7,6 +7,6 @@ public class No {
 
     No(int valor) {
         this.valor = valor;
-        this.proximo = null;
+        //this.proximo = null;
     }
 }

@@ -96,4 +96,30 @@ public class ListaDuplamenteLigada {
     quantidade--;
     return valor;
   }
+
+  /**
+   * Exercicio 9 - Implemente em Java um método imprimirReverso() na classe
+   * ListaDuplamenteLigada
+   * que imprime os elementos da lista do último para o primeiro, separados por "
+   * <-> ",
+   * terminando com "null".
+   */
+  public void imprimirReverso() {
+    No atual = ultimo;
+
+    while (atual != null) {
+      System.out.print(atual.valor + " <-> ");
+      atual = atual.anterior;
+    }
+    System.out.print("null");
+  }
+
+  public static void main(String[] args) {
+    ListaDuplamenteLigada lista = new ListaDuplamenteLigada(); // lista vazia
+
+    for (int v : new int[] { 10, 20, 30, 40 })
+      lista.inserirNoFinal(v); // 10 - 20 - 30 - 40
+
+    lista.imprimirReverso(); // Saida: 40 <-> 30 <-> 20 <-> 10 <-> null
+  }
 }
