@@ -3,10 +3,10 @@ public class FilaArrayCircular {
     // Array interno que armazena os elementos
     private int[] dados;
 
-    // Índice do primeiro elemento (frente da fila)
+    // indice do primeiro elemento (frente da fila)
     private int inicio;
 
-    // Índice do último elemento inserido
+    // indice do último elemento inserido
     private int fim;
 
     // Quantidade atual de elementos na fila
@@ -25,6 +25,10 @@ public class FilaArrayCircular {
         if (tamanho == dados.length)
             throw new RuntimeException("Fila cheia");
         fim = (fim + 1) % dados.length; // wrap-around: volta ao índice 0 quando chega no fim
+        // [3 4 5 _]
+        // dequeue(); [_ 4 5 _], inicio = 1
+        // enqueue(7); [_ 4 5 7], fim = 3
+        // equeue(2); fim = (fim + 1) % 4 = 4 % 4 = 0; [2 4 5 7], fim = 0, inicio = 1
         dados[fim] = valor;
         tamanho++;
     }
@@ -34,6 +38,8 @@ public class FilaArrayCircular {
         if (tamanho == 0)
             throw new RuntimeException("Fila vazia");
         int valor = dados[inicio];
+        // sobrescrevo o primeira posicao da fila pela segunda
+        // a segunda posicao se torna o novo inicio
         inicio = (inicio + 1) % dados.length; // wrap-around
         tamanho--;
         return valor;
@@ -85,4 +91,24 @@ public class FilaArrayCircular {
         sb.append("]");
         return sb.toString();
     }
+
+    // Exercício 13 
+    
 }
+
+/** Exercicio 9
+ * a)
+ * Operação | Array (0..4)       | inicio | fim | tamanho
+ * enqueue(10) | [10 _ _ _ _]    | 0      | 0   | 1
+ * enqueue(20) | [10 20 _ _ _]   | 0      | 1   | 2
+ * enqueue(30) | [10 20 30 _ _]  | 0      | 2   | 3
+ * dequeue()   | [_ 20 30 _ _]   | 1      | 2   | 2
+ * dequeue()   | [_ _ 30 _ _]    | 2      | 2   | 1 
+ * enqueue(40) | [_ _ 30 40 _]   | 2      | 3   | 2
+ * enqueue(50) | [_ _ 30 40 50]  | 2      | 4   | 3
+ * enqueue(60) | [60 _ 30 40 50] | 2      | 0   | 4
+ * (fim + 1) % array.length = (4 + 1) % 5 = 5 % 5 = 0
+ * 
+ * b) No enqueue(60)
+ * c) [60 _ 30 40 50], todas as posições menos o índice estão ocupadas
+ */
