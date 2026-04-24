@@ -92,8 +92,52 @@ public class FilaArrayCircular {
         return sb.toString();
     }
 
-    // Exercício 13 
-    
+    // Exercício 13
+    // Θ(n * k) — para cada uma das (n-1) eliminações, fazemos k passagens de dequeue+enqueue
+    public static int batataQuente(String[] nomes, int k) {
+        int n = nomes.length;
+        FilaArrayCircular fila = new FilaArrayCircular(n);
+ 
+        // Enfileira os índices 0, 1, 2... em vez dos nomes diretamente
+        for (int i = 0; i < n; i++) {
+            fila.enqueue(i);
+        }
+ 
+        System.out.println("Crianças: ");
+        for (int i = 0; i < n; i++) {
+            System.out.println("  índice " + i + " -> " + nomes[i]);
+        }
+        System.out.println("k = " + k + " passagens por rodada");
+        System.out.println();
+ 
+        int rodada = 1;
+        while (fila.tamanho() > 1) {
+            // Passa a batata k vezes: quem estava na frente vai para o fim
+            for (int i = 0; i < k; i++) {
+                fila.enqueue(fila.dequeue());
+            }
+            // Elimina quem ficou na frente após as k passagens
+            int indicEliminado = fila.dequeue();
+            System.out.println("Rodada " + rodada + ": "
+                    + nomes[indicEliminado] + " é eliminado(a).");
+            rodada++;
+        }
+ 
+        // Retorna o índice do vencedor (único restante na fila)
+        return fila.dequeue();
+    }
+
+    // método main para testar o exercício 13
+    public static void main(String[] args) {
+        System.out.println("=== Exercício 13 — Batata Quente (FilaArrayCircular) ===");
+        System.out.println();
+ 
+        String[] nomes = {"Ana", "Bruno", "Carla", "Daniel", "Eva"};
+        int indiceVencedor = batataQuente(nomes, 3);
+ 
+        System.out.println();
+        System.out.println("Vencedor(a): " + nomes[indiceVencedor] + "!");
+    }
 }
 
 /** Exercicio 9
